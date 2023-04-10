@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.util.Collections
 
 class MyAdapter(val lista: MutableList<String>): RecyclerView.Adapter<MyAdapter.MyHolder>() {
     var onItemClickRecyclerView: OnItemClickRecyclerView? = null
@@ -28,11 +29,28 @@ class MyAdapter(val lista: MutableList<String>): RecyclerView.Adapter<MyAdapter.
         this.notifyItemInserted(this.lista.size)
     }
 
+    fun del(position: Int){
+        this.lista.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, this.lista.size)
+    }
+
+
+    fun mov(firstNamePosition: Int, secondNamePosition: Int) {
+        val tmp = this.lista[firstNamePosition]
+        this.lista[firstNamePosition] = this.lista[secondNamePosition]
+        this.lista[secondNamePosition] = tmp
+        this.notifyItemChanged(firstNamePosition)
+        this.notifyItemChanged(secondNamePosition)
+    }
+
     inner class MyHolder (itemView: View): RecyclerView.ViewHolder(itemView){
         var tvNome: TextView
 
         init {
             this.tvNome = itemView.findViewById(R.id.tvItemNome)
+
+
 
             itemView.setOnClickListener({
                 this@MyAdapter.onItemClickRecyclerView?.onItemClick(this.adapterPosition)

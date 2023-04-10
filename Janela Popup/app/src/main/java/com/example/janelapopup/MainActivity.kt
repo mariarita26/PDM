@@ -5,10 +5,12 @@ import android.content.DialogInterface.OnClickListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -17,15 +19,6 @@ class MainActivity : AppCompatActivity() {
     private var lista = mutableListOf<String>()
     private lateinit var etNome: EditText
     private lateinit var tts: TextToSpeech
-
-    init {
-//        this.lista.add("Primeiro")
-//        this.lista.add("Segundo")
-//        this.lista.add("Terceiro")
-//        this.lista.add("Quarto")
-//        this.lista.add("Quinto")
-//        this.lista.add("Sexto")
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         (this.rvNomes.adapter as MyAdapter).onItemClickRecyclerView = OnItemClick()
 
         this.tts = TextToSpeech(this, null)
+
+        ItemTouchHelper(OnSwipe()).attachToRecyclerView(this.rvNomes)
     }
 
     fun add(){
@@ -61,11 +56,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    inner class OnItemClick: OnItemClickRecyclerView{
+    inner class OnItemClick: OnItemClickRecyclerView {
         override fun onItemClick(position: Int) {
             val nome = this@MainActivity.lista.get(position)
-//            Toast.makeText(this@MainActivity, nome, Toast.LENGTH_SHORT).show()
-            this@MainActivity.tts.speak(nome, TextToSpeech.QUEUE_FLUSH, null, null)
+            val speak = this@MainActivity.tts.speak(nome, TextToSpeech.QUEUE_FLUSH, null, null)
+        }
+
+    }
+
+    inner class OnSwipe : ItemTouchHelper.SimpleCallback(
+        ItemTouchHelper.DOWN or ItemTouchHelper.UP,
+        ItemTouchHelper.START or ItemTouchHelper.END
+    ) {
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            (this@MainActivity.rvNomes.adapter as MyAdapter).mov(
+                viewHolder.adapterPosition,
+                target.adapterPosition
+            )
+            return true
+        }
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            (this@MainActivity.rvNomes.adapter as MyAdapter).del(viewHolder.adapterPosition)
         }
     }
+
 }
