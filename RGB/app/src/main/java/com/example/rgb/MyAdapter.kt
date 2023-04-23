@@ -18,6 +18,13 @@ class MyAdapter(var lista: MutableList<String>): RecyclerView.Adapter<MyAdapter.
     override fun onBindViewHolder(holder: MyAdapter.MyHolder, position: Int) {
         val nome = this.lista.get(position)
         holder.tvNome.text = nome
+//        if (position % 2 == 0) {
+//            holder.itemView.setBackgroundColor(Color.RED)
+//        } else {
+//            holder.itemView.setBackgroundColor(Color.BLUE)
+//        }
+
+//        holder.itemLayout.setBackgroundColor(Color.parseColor("#${cor.toHex()}"))
     }
 
     override fun getItemCount(): Int {
@@ -27,11 +34,6 @@ class MyAdapter(var lista: MutableList<String>): RecyclerView.Adapter<MyAdapter.
     fun atualizarLista(novaLista: MutableList<String>) {
         this.lista = novaLista
         notifyDataSetChanged()
-    }
-
-    fun add(nome: String){
-        this.lista.add(nome)
-        this.notifyItemInserted(this.lista.size)
     }
 
     fun del(position: Int){
@@ -50,6 +52,7 @@ class MyAdapter(var lista: MutableList<String>): RecyclerView.Adapter<MyAdapter.
 
     inner class MyHolder (itemView: View): RecyclerView.ViewHolder(itemView){
         var tvNome: TextView
+        val itemLayout: View = itemView.findViewById(R.id.tvItemNome)
 
         init {
             this.tvNome = itemView.findViewById(R.id.tvItemNome)
@@ -60,3 +63,5 @@ class MyAdapter(var lista: MutableList<String>): RecyclerView.Adapter<MyAdapter.
         }
     }
 }
+
+

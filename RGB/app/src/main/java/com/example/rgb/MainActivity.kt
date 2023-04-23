@@ -1,6 +1,5 @@
 package com.example.rgb
 
-import android.content.ClipData
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvNomes: RecyclerView
     private lateinit var fabAdd: FloatingActionButton
     private lateinit var salvar: Salvar
-    private lateinit var etText: EditText
     private lateinit var cor: Cor
     private var lista = mutableListOf<String>()
     private lateinit var adapter: MyAdapter
@@ -40,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", "Lista de cores: ${this.salvar.listaCores}")
 
         this.adapter = MyAdapter(this.lista)
-
         this.rvNomes.adapter = this.adapter
 
         ItemTouchHelper(OnSwipe()).attachToRecyclerView(this.rvNomes)
@@ -58,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Cadastrada com sucesso!", Toast.LENGTH_SHORT).show()
                 this.lista.add(cor.nome)
                 this.adapter.atualizarLista(this.lista)
-
             }
         }
 
@@ -100,11 +96,11 @@ class MainActivity : AppCompatActivity() {
 
             if (direction == ItemTouchHelper.END){
                 val cor = salvar.listaCores[position]
-                val code = cor.codigo
+                val codigoHex = String.format("#%02X%02X%02X", cor.vermelho, cor.verde, cor.azul )
 
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
-                    putExtra(Intent.EXTRA_TEXT, "Código hexadecimal da cor ${cor.nome}: $code")
+                    putExtra(Intent.EXTRA_TEXT, "Código hexadecimal da cor ${cor.nome}: $codigoHex")
                 }
                 startActivity(Intent.createChooser(intent, "Compartilhar código da cor"))
 
