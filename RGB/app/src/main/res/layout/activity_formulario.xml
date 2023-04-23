@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Formulario">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tvCadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastro de Cores"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.127" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+        <EditText
+            android:id="@+id/etCor"
+            android:layout_width="355dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:hint="Nome da cor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.714"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.095"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/etVermelho"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:hint="Vermelho"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCor"
+            app:layout_constraintVertical_bias="0.24"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/etVerde"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:hint="Verde"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCor"
+            app:layout_constraintVertical_bias="0.24"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/etAzul"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:hint="Azul"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCor"
+            app:layout_constraintVertical_bias="0.24"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#C9A7EB"
+            android:text="Enviar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRGB"
+            app:layout_constraintVertical_bias="0.496" />
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#63625E"
+            android:text="Cancelar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRGB"
+            app:layout_constraintVertical_bias="0.496" />
+
+    </LinearLayout>
+</LinearLayout>
