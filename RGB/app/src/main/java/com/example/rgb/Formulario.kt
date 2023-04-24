@@ -37,9 +37,9 @@ class Formulario : AppCompatActivity() {
         } as? Cor
 
         this.etCor.setText(cor?.nome)
-        this.etVermelho.setText(cor?.vermelho.toString())
-        this.etVerde.setText(cor?.verde.toString())
-        this.etAzul.setText(cor?.azul.toString())
+//        this.etVermelho.setText(cor?.vermelho.toString())
+//        this.etVerde.setText(cor?.verde.toString())
+//        this.etAzul.setText(cor?.azul.toString())
 
         this.btnEnviar.setOnClickListener({ this.cadastrar() })
         this.btnCancelar.setOnClickListener({ this.cancelar() })
